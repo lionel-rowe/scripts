@@ -5,6 +5,7 @@
 	"tasks": {
 	},
 	"imports": {
+		"@std/bytes": "jsr:@std/bytes@^1.0.4"
 	},
 	"fmt": {
 		"semiColons": false,
