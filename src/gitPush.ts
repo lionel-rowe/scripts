@@ -2,7 +2,7 @@
 
 import { $ } from './utils/cmd.ts'
 
-const $push = await $`git push`
+const $push = await $`git push ${Deno.args}`
 
 if (/fatal: The current branch .+ has no upstream branch/.test($push.output)) {
 	const $remote = await $`git remote`
@@ -12,7 +12,7 @@ if (/fatal: The current branch .+ has no upstream branch/.test($push.output)) {
 	if (remoteName == null) throw new Error('Could not find remote')
 
 	const $branch = await $`git rev-parse --abbrev-ref HEAD`
-	const $result = await $`git push -u ${remoteName} ${$branch.output}`
+	const $result = await $`git push ${Deno.args} -u ${remoteName} ${$branch.output}`
 
 	console.info($result.output)
 	Deno.exitCode = $result.code
